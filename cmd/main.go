@@ -10,6 +10,7 @@ import (
 	"syscall"
 
 	"github.com/rthornton128/goncurses"
+	"github.com/sigmaray/gosnake/shared"
 )
 
 // EnvConfig holds configuration parsed from environment variables
@@ -53,7 +54,7 @@ func ParseEnv() EnvConfig {
 func main() {
 	config := ParseEnv()
 
-	state := NewState(config.UseTimer, config.Size)
+	state := shared.NewState(config.UseTimer, config.Size)
 
 	// Initialize ncurses
 	stdscr, err := goncurses.Init()
@@ -111,17 +112,17 @@ func main() {
 
 		switch input {
 		case goncurses.KEY_UP, 'w', 'W':
-			state.OnKeyPress(KeyUp)
+			state.OnKeyPress(shared.KeyUp)
 		case goncurses.KEY_DOWN, 's', 'S':
-			state.OnKeyPress(KeyDown)
+			state.OnKeyPress(shared.KeyDown)
 		case goncurses.KEY_LEFT, 'a', 'A':
-			state.OnKeyPress(KeyLeft)
+			state.OnKeyPress(shared.KeyLeft)
 		case goncurses.KEY_RIGHT, 'd', 'D':
-			state.OnKeyPress(KeyRight)
+			state.OnKeyPress(shared.KeyRight)
 		case 'q', 'Q':
 			return // Exit on 'q'
 		case 'r', 'R':
-			state.OnKeyPress(KeyReset)
+			state.OnKeyPress(shared.KeyReset)
 		case 0:
 			if config.UseTimer {
 				state.MoveSnake()

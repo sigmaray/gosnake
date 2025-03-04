@@ -14,7 +14,7 @@ RUN go mod download
 COPY *.go ./
 
 # Build
-RUN GOOS=linux go build -o ./gosnake
+RUN GOOS=linux go build cmd/main.go -o ./gosnake
 
 # Run
 CMD ["./gosnake"]
