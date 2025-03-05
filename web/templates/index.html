@@ -1,0 +1,78 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ .title }}</title>
+</head>
+
+<body>
+    <center>
+        <h1>{{ .title }}</h1>
+        <table>
+            <tr>
+                <td></td>
+                <td align="center">
+                    <a href="/?key=up">
+                        <button>Up</button>
+                    </a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <a href="/?key=left">
+                        <button>Left</button>
+                    </a>
+                </td>
+                <td></td>
+                <td align="center">
+                    <a href="/?key=right">
+                        <button>Right</button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="center">
+                    <a href="/?key=down">
+                        <button>Down</button>
+                    </a>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <br /><br /><br /><br /><br />
+        <font size=16>
+            <pre>{{.board}}</pre>
+        </font>
+        <br /><br />
+        <div>stateJSON:</div>
+        <textarea cols="50" rows="20" readonly>{{.stateJSON}}</textarea>
+    </center>
+    <script>
+        document.addEventListener('keydown', event => {
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                window.location.replace("/?key=left");
+            }
+            else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                window.location.replace("/?key=right");
+            }
+            else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                window.location.replace("/?key=up");
+
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                window.location.replace("/?key=down");
+            } else if (event.key === 'r') {
+                event.preventDefault();
+                window.location.replace("/?key=r");
+            }
+        });
+    </script>
+</body>
+
+</html>

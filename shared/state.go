@@ -1,4 +1,4 @@
-package main
+package shared
 
 import (
 	"math/rand"
@@ -109,16 +109,28 @@ func (s *State) ChangeDirection(newDirection Direction) bool {
 		return false
 	}
 
-	if (s.Direction == Up && newDirection == Down) ||
-		(s.Direction == Down && newDirection == Up) ||
-		(s.Direction == Left && newDirection == Right) ||
-		(s.Direction == Right && newDirection == Left) {
-		// These switches are forbidden
-		return false
+	isSwitchAllowed := func(s *State) bool {
+		if len(s.Snake) == 1 && s.UseTimer == false {
+			return true
+		}
+
+		if (s.Direction == Up && newDirection == Down) ||
+			(s.Direction == Down && newDirection == Up) ||
+			(s.Direction == Left && newDirection == Right) ||
+			(s.Direction == Right && newDirection == Left) {
+			// These switches are forbidden
+			return false
+		}
+
+		return true
 	}
 
-	s.Direction = newDirection
-	return true
+	if isSwitchAllowed(s) {
+		s.Direction = newDirection
+		return true
+	} else {
+		return false
+	}
 }
 
 // OnKeyPress handles key press events
