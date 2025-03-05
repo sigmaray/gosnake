@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install deps
+      run: sudo apt install -y libx11-dev libxrandr-dev
+
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
