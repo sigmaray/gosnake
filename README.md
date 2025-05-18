@@ -55,6 +55,16 @@ TIMER=off SIZE=10 go run cmd/main.go
 TIMEOUT=500 go run cmd/main.go
 ```
 
+# Ebitengine version
+
+Examples:
+```
+TIMER=off SIZE=10 go run ebiten/main.go
+```
+```
+TIMEOUT=500 go run ebiten/main.go
+```
+
 # Web version
 
 There is web version with all functionality except timer (snake is moved only after key press)
